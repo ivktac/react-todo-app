@@ -1,9 +1,4 @@
-import { Todo } from "../types";
-
-interface TodoListProps {
-  todos: Todo[];
-  toggleTodo: (id: number) => void;
-}
+import { useTodos } from "../context/TodosContext";
 
 const getColor = (priority: number): string => {
   switch (priority) {
@@ -18,10 +13,12 @@ const getColor = (priority: number): string => {
   }
 };
 
-export default function TodoList({ todos, toggleTodo }: TodoListProps) {
+export default function TodoList() {
+  const { state, toggleTodo } = useTodos();
+
   return (
     <ul className="todos" aria-label="todos" role="list">
-      {todos.map((todo) => {
+      {state?.todos.map((todo) => {
         const completedTodoStyle = todo.completed ? "line-through" : "none";
 
         return (
@@ -29,7 +26,7 @@ export default function TodoList({ todos, toggleTodo }: TodoListProps) {
             <input
               type="checkbox"
               checked={todo.completed}
-              onChange={() => toggleTodo(todo.id)}
+              onChange={() => toggleTodo?.(todo.id)}
             />
             <span
               style={{

@@ -1,16 +1,15 @@
 import { useState } from "react";
+import { useTodos } from "../context/TodosContext";
 
-interface TodoFormProps {
-  addTodo: (name: string, priority: number) => void;
-}
+export default function TodoForm() {
+  const { addTodo } = useTodos();
 
-export default function TodoForm({ addTodo }: TodoFormProps) {
   const [name, setName] = useState("");
   const [priority, setPriority] = useState(1);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    addTodo(name, priority);
+    addTodo?.(name, priority);
     setName("");
     setPriority(1);
   };
