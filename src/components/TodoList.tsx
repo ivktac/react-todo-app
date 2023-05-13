@@ -45,18 +45,6 @@ export default function TodoList() {
               >
                 Delete
               </button>
-              <button
-                className={cls(styles.actionButton, styles.editButton)}
-                onClick={() => {
-                  // open dialog
-
-                  // update todo
-
-                  // close dialog
-                }}
-              >
-                Edit
-              </button>
             </div>
           </li>
         );
