@@ -5,7 +5,8 @@ import { TodosContext } from "../context/TodosContext";
 type Action =
   | { type: "ADD_TODO"; payload: Todo }
   | { type: "TOGGLE_TODO"; payload: number }
-  | { type: "DELETE_TODO"; payload: number };
+  | { type: "DELETE_TODO"; payload: number }
+  | { type: "DELETE_ALL" };
 
 export default function TodosProvider(
   { children }: { children: React.ReactNode },
@@ -22,6 +23,8 @@ export default function TodosProvider(
         );
       case "DELETE_TODO":
         return state.filter((todo) => todo.id !== action.payload);
+      case "DELETE_ALL":
+        return [];
       default:
         return state;
     }
@@ -57,9 +60,21 @@ export default function TodosProvider(
     });
   };
 
+  const deleteAllTodos = () => {
+    dispatch({
+      type: "DELETE_ALL",
+    });
+  };
+
   return (
     <TodosContext.Provider
-      value={{ state: { todos }, addTodo, toggleTodo, deleteTodo }}
+      value={{
+        state: { todos },
+        addTodo,
+        toggleTodo,
+        deleteTodo,
+        deleteAllTodos,
+      }}
     >
       {children}
     </TodosContext.Provider>

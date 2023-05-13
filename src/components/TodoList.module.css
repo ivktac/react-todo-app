@@ -1,0 +1,28 @@
+.actionButton {
+  color: #fff;
+  width: fit-content;
+  padding: 0 20px;
+  border: none;
+}
+
+.deleteButton {
+  background-color: #ff0000;
+}
+
+.editButton {
+  background-color: #00f;
+}
+
+
+.todo {
+  display: flex;
+  gap: 10px;
+  justify-items: center;
+}
+
+.buttonGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  justify-items: center;
+}

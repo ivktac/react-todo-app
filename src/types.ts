@@ -4,3 +4,11 @@ export type Todo = {
   completed: boolean;
   priority: number;
 };
+
+export type TodosContextType = {
+  state: { todos: Todo[] };
+  addTodo: (name: string, priority: number) => void;
+  deleteTodo: (id: number) => void;
+  toggleTodo: (id: number) => void;
+  deleteAllTodos: () => void;
+};

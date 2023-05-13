@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTodos } from "../context/TodosContext";
 
 export default function TodoForm() {
-  const { addTodo } = useTodos();
+  const { state, addTodo, deleteAllTodos } = useTodos();
 
   const [name, setName] = useState("");
   const [priority, setPriority] = useState(1);
@@ -15,6 +15,8 @@ export default function TodoForm() {
   };
 
   const isNameEmpty = name.trim().length === 0;
+
+  const isNoTodos = state.todos.length === 0;
 
   return (
     <form
@@ -40,6 +42,9 @@ export default function TodoForm() {
         <option value="3">High</option>
       </select>
       <button disabled={isNameEmpty}>Add Todo</button>
+      <button type="button" onClick={deleteAllTodos} hidden={isNoTodos}>
+        Delete All
+      </button>
     </form>
   );
 }

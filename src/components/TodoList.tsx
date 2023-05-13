@@ -1,4 +1,6 @@
 import { useTodos } from "../context/TodosContext";
+import { cls } from "../utils";
+import styles from "./TodoList.module.css";
 
 const getColor = (priority: number): string => {
   switch (priority) {
@@ -14,7 +16,7 @@ const getColor = (priority: number): string => {
 };
 
 export default function TodoList() {
-  const { state, toggleTodo } = useTodos();
+  const { state, toggleTodo, deleteTodo } = useTodos();
 
   return (
     <ul className="todos" aria-label="todos" role="list">
@@ -22,7 +24,7 @@ export default function TodoList() {
         const completedTodoStyle = todo.completed ? "line-through" : "none";
 
         return (
-          <li key={todo.id}>
+          <li key={todo.id} className={styles.todo}>
             <input
               type="checkbox"
               checked={todo.completed}
@@ -36,6 +38,26 @@ export default function TodoList() {
             >
               {todo.name}
             </span>
+            <div className={styles.buttonGrid}>
+              <button
+                className={cls(styles.actionButton, styles.deleteButton)}
+                onClick={() => deleteTodo(todo.id)}
+              >
+                Delete
+              </button>
+              <button
+                className={cls(styles.actionButton, styles.editButton)}
+                onClick={() => {
+                  // open dialog
+
+                  // update todo
+
+                  // close dialog
+                }}
+              >
+                Edit
+              </button>
+            </div>
           </li>
         );
       })}
