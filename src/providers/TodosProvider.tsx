@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { Todo } from "../types";
 import { TodosContext } from "../context/TodosContext";
 
@@ -25,7 +25,11 @@ export default function TodosProvider(
       default:
         return state;
     }
-  }, []);
+  }, JSON.parse(localStorage.getItem("todos") || "[]"));
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = (name: string, priority: number) => {
     dispatch({
