@@ -18,7 +18,7 @@ export default function TodoList() {
 
   return (
     <ul className="todos" aria-label="todos" role="list">
-      {state?.todos.map((todo) => {
+      {state.todos.map((todo) => {
         const completedTodoStyle = todo.completed ? "line-through" : "none";
 
         return (

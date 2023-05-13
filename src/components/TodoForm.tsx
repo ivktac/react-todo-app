@@ -9,7 +9,7 @@ export default function TodoForm() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    addTodo?.(name, priority);
+    addTodo(name, priority);
     setName("");
     setPriority(1);
   };

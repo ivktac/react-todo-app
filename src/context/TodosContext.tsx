@@ -8,7 +8,7 @@ type TodosContextType = {
   deleteTodo: (id: number) => void;
 };
 
-export const TodosContext = createContext<TodosContextType | null>(null!);
+export const TodosContext = createContext<TodosContextType>(null!);
 
 export function useTodos() {
   const context = useContext(TodosContext);
