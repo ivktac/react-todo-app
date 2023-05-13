@@ -22,6 +22,8 @@ export default function TodoList({ todos, toggleTodo }: TodoListProps) {
   return (
     <ul className="todos" aria-label="todos" role="list">
       {todos.map((todo) => {
+        const completedTodoStyle = todo.completed ? "line-through" : "none";
+
         return (
           <li key={todo.id}>
             <input
@@ -29,7 +31,12 @@ export default function TodoList({ todos, toggleTodo }: TodoListProps) {
               checked={todo.completed}
               onChange={() => toggleTodo(todo.id)}
             />
-            <span style={{ color: getColor(todo.priority) }}>
+            <span
+              style={{
+                color: getColor(todo.priority),
+                textDecoration: completedTodoStyle,
+              }}
+            >
               {todo.name}
             </span>
           </li>
